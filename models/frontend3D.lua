@@ -33,9 +33,16 @@ local function createModel(opt)
    model:add(cudnn.VolumetricBatchNormalization(64))
    model:add(nn.ReLU(true))
    
-   --[[
-   nn.VolumetricConvolution(nInputPlane, nOutputPlane, kT, kW, kH [, dT, dW, dH])
-
+   --[[  
+   The parameters are the following: 
+      * nInputPlane: The number of expected input planes in the image given into forward(). 1
+      * nOutputPlane: The number of output planes the convolution layer will produce. 3
+      * kT: The kernel size of the convolution in time 3
+      * kW: The kernel width of the convolution 1
+      * kH: The kernel height of the convolution 2
+      * dT: The step of the convolution in the time dimension. 2 
+      * dW: The step of the convolution in the width dimension. 0 
+      * dH: The step of the convolution in the height dimension. 1
    ]]--
    model:add(cudnn.VolumetricMaxPooling(1,3,3,1,2,2,0,1,1))
 
